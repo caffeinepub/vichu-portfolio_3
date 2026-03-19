@@ -183,18 +183,22 @@ export default function CertificationsTab() {
               />
             ) : (
               <div className="bg-card rounded-xl border border-border overflow-hidden shadow-xs">
-                <div className="aspect-video bg-secondary flex items-center justify-center overflow-hidden">
+                <div className="relative aspect-video bg-secondary overflow-hidden">
                   {c.imageId ? (
                     <BlobImage
                       imageId={c.imageId}
                       alt={c.title || "Certificate"}
-                      className="w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover"
                       fallback={
-                        <Award className="w-8 h-8 text-muted-foreground/40" />
+                        <div className="absolute inset-0 w-full h-full flex items-center justify-center">
+                          <Award className="w-8 h-8 text-muted-foreground/40" />
+                        </div>
                       }
                     />
                   ) : (
-                    <Award className="w-8 h-8 text-muted-foreground/40" />
+                    <div className="absolute inset-0 w-full h-full flex items-center justify-center">
+                      <Award className="w-8 h-8 text-muted-foreground/40" />
+                    </div>
                   )}
                 </div>
                 <div className="p-2">

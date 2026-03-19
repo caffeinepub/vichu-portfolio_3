@@ -52,21 +52,21 @@ export default function ProjectsSection() {
                 className="bg-card rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden group border border-border"
                 data-ocid={`projects.item.${i + 1}`}
               >
-                <div className="aspect-video bg-gradient-to-br overflow-hidden">
+                <div className="relative aspect-video overflow-hidden">
                   {project.imageId ? (
                     <BlobImage
                       imageId={project.imageId}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       fallback={
                         <div
-                          className={`w-full h-full bg-gradient-to-br ${GRADIENTS[i % GRADIENTS.length]}`}
+                          className={`absolute inset-0 w-full h-full bg-gradient-to-br ${GRADIENTS[i % GRADIENTS.length]}`}
                         />
                       }
                     />
                   ) : (
                     <div
-                      className={`w-full h-full bg-gradient-to-br ${GRADIENTS[i % GRADIENTS.length]}`}
+                      className={`absolute inset-0 w-full h-full bg-gradient-to-br ${GRADIENTS[i % GRADIENTS.length]}`}
                     />
                   )}
                 </div>

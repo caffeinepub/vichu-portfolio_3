@@ -52,7 +52,6 @@ export default function ImageUploader({
     }
   };
 
-  // Determine current state for status indicator
   const getStatusBadge = () => {
     if (!isAuthenticated) return null;
     if (!isReady) {
@@ -86,7 +85,7 @@ export default function ImageUploader({
           <BlobImage
             imageId={currentImageId}
             alt="Preview"
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
           />
           {onClear && (
             <button
@@ -100,7 +99,6 @@ export default function ImageUploader({
         </div>
       )}
 
-      {/* Status indicator */}
       {isAuthenticated && (
         <div className="min-h-[26px] flex items-center">{getStatusBadge()}</div>
       )}

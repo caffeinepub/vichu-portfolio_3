@@ -1,4 +1,4 @@
-import { HttpAgent } from "@icp-sdk/core/agent";
+import { HttpAgent } from "@dfinity/agent";
 import { useQuery } from "@tanstack/react-query";
 import { loadConfig } from "../config";
 import { StorageClient } from "../utils/StorageClient";
@@ -13,7 +13,7 @@ export function useStorageService() {
     queryFn: async () => {
       const config = await loadConfig();
       const agent = new HttpAgent({
-        host: config.backend_host,
+        host: config.backend_host ?? "https://icp-api.io",
         identity: identity ?? undefined,
       });
       if (config.backend_host?.includes("localhost")) {
@@ -28,6 +28,7 @@ export function useStorageService() {
       );
     },
     staleTime: Number.POSITIVE_INFINITY,
+    enabled: !!identity, // only create storage client when authenticated
   });
 
   const uploadFile = async (file: File): Promise<string> => {

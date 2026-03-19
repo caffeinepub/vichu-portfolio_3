@@ -43,14 +43,14 @@ export default function HeroSection() {
             transition={{ duration: 0.7 }}
             className="flex justify-center md:justify-start order-2 md:order-1"
           >
-            <div className="w-72 h-80 md:w-80 md:h-96 rounded-2xl overflow-hidden shadow-card ring-4 ring-primary/10">
+            <div className="relative w-72 h-80 md:w-80 md:h-96 rounded-2xl overflow-hidden shadow-card ring-4 ring-primary/10">
               {profile?.profileImageId ? (
                 <BlobImage
                   imageId={profile.profileImageId}
                   alt={name}
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                   fallback={
-                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                    <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
                       <span className="text-6xl font-bold text-primary">
                         {initials}
                       </span>
@@ -58,7 +58,7 @@ export default function HeroSection() {
                   }
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary flex items-center justify-center">
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-primary/20 to-secondary flex items-center justify-center">
                   <span className="text-6xl font-bold text-primary">
                     {initials}
                   </span>

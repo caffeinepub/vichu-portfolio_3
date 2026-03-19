@@ -45,20 +45,20 @@ export default function CertificationsSection() {
                 className="bg-card rounded-2xl shadow-card border border-border overflow-hidden group hover:shadow-card-hover transition-all duration-300"
                 data-ocid={`certifications.item.${i + 1}`}
               >
-                <div className="aspect-video bg-secondary overflow-hidden">
+                <div className="relative aspect-video bg-secondary overflow-hidden">
                   {cert.imageId ? (
                     <BlobImage
                       imageId={cert.imageId}
                       alt={cert.title || "Certificate"}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       fallback={
-                        <div className="w-full h-full flex items-center justify-center">
+                        <div className="absolute inset-0 w-full h-full flex items-center justify-center">
                           <Award className="w-10 h-10 text-muted-foreground/40" />
                         </div>
                       }
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center">
+                    <div className="absolute inset-0 w-full h-full flex items-center justify-center">
                       <Award className="w-10 h-10 text-muted-foreground/40" />
                     </div>
                   )}
