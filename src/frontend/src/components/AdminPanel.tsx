@@ -6,9 +6,20 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Award, FolderOpen, Phone, Settings, User, Zap } from "lucide-react";
+import {
+  Award,
+  FolderOpen,
+  Layout,
+  Palette,
+  Phone,
+  Settings,
+  User,
+  Zap,
+} from "lucide-react";
+import AppearanceTab from "./admin/AppearanceTab";
 import CertificationsTab from "./admin/CertificationsTab";
 import ContactTab from "./admin/ContactTab";
+import CustomSectionsTab from "./admin/CustomSectionsTab";
 import ProfileTab from "./admin/ProfileTab";
 import ProjectsTab from "./admin/ProjectsTab";
 import SkillsTab from "./admin/SkillsTab";
@@ -35,48 +46,66 @@ export default function AdminPanel({ open, onClose }: AdminPanelProps) {
           </p>
         </SheetHeader>
         <Tabs defaultValue="profile" className="flex flex-col flex-1 min-h-0">
-          <TabsList className="mx-6 mt-4 mb-0 grid grid-cols-5 h-9 flex-shrink-0">
-            <TabsTrigger
-              value="profile"
-              className="text-xs gap-1"
-              data-ocid="admin.tab"
-            >
-              <User className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Profile</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="projects"
-              className="text-xs gap-1"
-              data-ocid="admin.tab"
-            >
-              <FolderOpen className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Projects</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="skills"
-              className="text-xs gap-1"
-              data-ocid="admin.tab"
-            >
-              <Zap className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Skills</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="certifications"
-              className="text-xs gap-1"
-              data-ocid="admin.tab"
-            >
-              <Award className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Certs</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="contact"
-              className="text-xs gap-1"
-              data-ocid="admin.tab"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Contact</span>
-            </TabsTrigger>
-          </TabsList>
+          <div className="px-4 mt-3 mb-0 flex-shrink-0 overflow-x-auto">
+            <TabsList className="flex w-max gap-0.5 h-9 bg-muted/50 p-1 rounded-lg">
+              <TabsTrigger
+                value="profile"
+                className="text-xs gap-1 px-2.5 whitespace-nowrap"
+                data-ocid="admin.tab"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span>Profile</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="projects"
+                className="text-xs gap-1 px-2.5 whitespace-nowrap"
+                data-ocid="admin.tab"
+              >
+                <FolderOpen className="w-3.5 h-3.5" />
+                <span>Projects</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="skills"
+                className="text-xs gap-1 px-2.5 whitespace-nowrap"
+                data-ocid="admin.tab"
+              >
+                <Zap className="w-3.5 h-3.5" />
+                <span>Skills</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="certifications"
+                className="text-xs gap-1 px-2.5 whitespace-nowrap"
+                data-ocid="admin.tab"
+              >
+                <Award className="w-3.5 h-3.5" />
+                <span>Certs</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="contact"
+                className="text-xs gap-1 px-2.5 whitespace-nowrap"
+                data-ocid="admin.tab"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                <span>Contact</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="appearance"
+                className="text-xs gap-1 px-2.5 whitespace-nowrap"
+                data-ocid="admin.tab"
+              >
+                <Palette className="w-3.5 h-3.5" />
+                <span>Looks</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="sections"
+                className="text-xs gap-1 px-2.5 whitespace-nowrap"
+                data-ocid="admin.tab"
+              >
+                <Layout className="w-3.5 h-3.5" />
+                <span>Sections</span>
+              </TabsTrigger>
+            </TabsList>
+          </div>
           <ScrollArea className="flex-1 min-h-0">
             <div className="px-6 py-5">
               <TabsContent value="profile" className="mt-0">
@@ -93,6 +122,12 @@ export default function AdminPanel({ open, onClose }: AdminPanelProps) {
               </TabsContent>
               <TabsContent value="contact" className="mt-0">
                 <ContactTab />
+              </TabsContent>
+              <TabsContent value="appearance" className="mt-0">
+                <AppearanceTab />
+              </TabsContent>
+              <TabsContent value="sections" className="mt-0">
+                <CustomSectionsTab />
               </TabsContent>
             </div>
           </ScrollArea>

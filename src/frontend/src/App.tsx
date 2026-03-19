@@ -1,10 +1,12 @@
 import { Toaster } from "@/components/ui/sonner";
 import { useQueryClient } from "@tanstack/react-query";
+import { Settings } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import AboutSection from "./components/AboutSection";
 import AdminPanel from "./components/AdminPanel";
 import CertificationsSection from "./components/CertificationsSection";
 import ContactSection from "./components/ContactSection";
+import CustomSections from "./components/CustomSections";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
 import NavBar from "./components/NavBar";
@@ -145,14 +147,30 @@ export default function App() {
   const keyTimestamps = useRef<number[]>([]);
   useSeedData();
 
+  // Init blob service
   useEffect(() => {
     initBlobService();
   }, []);
+
+  // Apply dark mode
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
     localStorage.setItem("darkMode", String(darkMode));
   }, [darkMode]);
 
+  // Apply saved theme and font on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if (savedTheme) {
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    }
+    const savedFont = localStorage.getItem("portfolio-font");
+    if (savedFont) {
+      document.documentElement.style.setProperty("--font-body", savedFont);
+    }
+  }, []);
+
+  // Keyboard shortcut: press A x3
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement;
@@ -189,11 +207,23 @@ export default function App() {
         <ProjectsSection />
         <SkillsSection />
         <CertificationsSection />
+        <CustomSections />
         <ContactSection />
       </main>
       <Footer />
       <AdminPanel open={adminOpen} onClose={() => setAdminOpen(false)} />
       <Toaster richColors position="top-right" />
+
+      {/* Hidden corner settings button — mobile friendly */}
+      <button
+        type="button"
+        onClick={() => setAdminOpen(true)}
+        aria-label="Open settings"
+        data-ocid="admin.open_modal_button"
+        className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-primary/80 hover:bg-primary text-primary-foreground shadow-lg backdrop-blur-sm flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 opacity-40 hover:opacity-100 focus:opacity-100"
+      >
+        <Settings className="w-4 h-4" />
+      </button>
     </div>
   );
 }
